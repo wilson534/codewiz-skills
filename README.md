@@ -7,6 +7,7 @@
 | Skill | 用途 |
 |---|---|
 | [meeting-notes](./meeting-notes/) | 基于会议逐字稿、模型自动纪要和手写记录，生成结构清晰的会议纪要，可选生成 XMind 大纲 |
+| [publish-research](./publish-research/) | 把技术调研草稿整理成对外可读的单文档：结构整合、语言打磨、证据核实、发布到 GitLab / GitHub |
 
 ## 安装
 
@@ -15,6 +16,7 @@
 ```bash
 git clone https://github.com/wilson534/codewiz-skills.git ~/.config/codewiz/skills-repo
 ln -s ~/.config/codewiz/skills-repo/meeting-notes ~/.config/codewiz/skills/meeting-notes
+ln -s ~/.config/codewiz/skills-repo/publish-research ~/.config/codewiz/skills/publish-research
 ```
 
 ### 方式 2：单独复制某个 skill
