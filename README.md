@@ -8,6 +8,8 @@
 |---|---|
 | [meeting-notes](./meeting-notes/) | 基于会议逐字稿、模型自动纪要和手写记录，生成结构清晰的会议纪要，可选生成 XMind 大纲 |
 | [publish-research](./publish-research/) | 把技术调研草稿整理成对外可读的单文档：结构整合、语言打磨、证据核实、发布到 GitLab / GitHub |
+| [skills-push](./skills-push/) | 把本地 `~/.claude/skills/` 同步到本 repo + push 双 remote（GitHub origin + 公司 GitLab gitlab） |
+| [skills-pull](./skills-pull/) | 从远端拉最新 skill 同步回 `~/.claude/skills/`（换机器恢复或拉同事改动） |
 
 ## 安装
 
@@ -42,6 +44,26 @@ cp -r meeting-notes ~/.claude/skills/
 ```
 
 应该能看到对应的 skill 出现在列表里。
+
+## 双向同步
+
+repo 关联两个 remote：
+- `origin` → GitHub `wilson534/codewiz-skills`（QQ 邮箱签 commit）
+- `gitlab` → 公司 GitLab `pengzhiwei1/codewiz-skills`（公司邮箱签 commit，main 是 protected branch）
+
+两条历史从初始 commit 起就独立（无共同祖先），靠 [scripts/sync.sh](./scripts/sync.sh) 维持内容一致：
+
+```bash
+# push：~/.claude/skills/ → repo → push 双 remote
+bash scripts/sync.sh push
+
+# pull：git pull origin → ~/.claude/skills/
+bash scripts/sync.sh pull
+```
+
+或者在 cc 里直接调 `/skills-push` / `/skills-pull` skill（薄壳，最终调同一个 sync.sh）。
+
+身份切换、protected branch 绕过、trap EXIT 兜底都封装在脚本里，使用者无需关心。
 
 ## 贡献
 
